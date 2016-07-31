@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>主页</title>
+<link rel="stylesheet" href="/20160714jstree/css/bootstrap.css" />
+<link rel="stylesheet" href="/20160714jstree/css/bootstrap.css.map" />
+
+<link rel="stylesheet" href="/20160714jstree/css/jquery.dataTables.css" />
+
+<link rel="stylesheet" href="/20160714jstree/css/style.min.css" />
+<link rel="stylesheet" href="/20160714jstree/img/32px.png" />
+<link rel="stylesheet" href="/20160714jstree/img/throbber.gif" />
+
+
+<link rel="icon" href="/20160714jstree/images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="/20160714jstree/js/jquery.js"></script>
+<script type="text/javascript" src="/20160714jstree/js/bootstrap.js"></script>
+<script type="text/javascript" src="/20160714jstree/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#ajaxdt").click(function() {
+
+			 var otable = $("#example").dataTable();
+			 if(otable) {
+				 otable.fnDestroy();
+			 }
+			
+			 $("#example").dataTable({  
+				 
+				  'serverSide': true,  
+				  
+				  'ajax' : {
+					  'url' : '/20160714jstree/datatable/getJsonData.do',
+					  'dataType': 'jsonp',  
+				      'type': 'GET'
+				    /*   'data' : {'keywords':''} */
+				  },
+				  
+				  'aoColumns': [
+				  		{'data':'deptId'},
+				  		{'data':'deptName'},
+				  		{'data':'parentId'},
+				  		{'data':'icon'},
+				  		{'data':'order'}
+			 	  ],
+			 	  
+			 	  'aaSorting': [['0', 'DESC']],  
+			 	  
+			});
+		});
+	});
+	
+	
+	
+</script>
+</head>
+<body>
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>
+				<button id="ajaxdt" class="btn btn-success" type="button">ajax-datatable</button>
+				&nbsp;<a href="views/index2.html" type="button" role="btn">index2</a>
+			</p>
+			
+			
+			<form class="form-horizontal" action="/20160714jstree/dept/upload.do" enctype="multipart/form-data" method="post">
+				<div class="form-group">
+					<label class="col-md-2 control-label">上传头像：</label>
+					<div class="col-md-10">
+						<input type="file" name="files" multiple="multiple">
+					</div>
+				</div>
+				<div class="col-md-offset-2">
+					<button class="btn btn-success active" type="submit">提交表单</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<form action="" id="form" method="GET">
+			<table id="example" class="display" cellspacing="0" width="90%">
+				<thead>
+					<tr>
+						<th>部门编号</th>
+						<th>部门名称</th>
+						<th>上级部门</th>
+						<th>校徽</th>
+						<th>排名</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</form>
+	</div>
+	<div class="row">
+		<div class="col-md-6 thumbnail">
+			<a href="#"><img src="images/Outbreak.jpg"></a>
+			<div class="caption">
+				<h4>越狱</h4>
+			</div>
+		</div>
+		<div class="col-md-6 thumbnail">
+			<a href="#"><img src="images/Sala.jpg"></a>
+			<div class="caption">
+				<h4>Sala</h4>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
