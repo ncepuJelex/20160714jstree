@@ -6,5 +6,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 别名 -->
 	<typeAliases>
 		<package name="com.jel.tech.entity"/>
+		<package name="com.jel.tech.vo"/>
 	</typeAliases>
 </configuration>
