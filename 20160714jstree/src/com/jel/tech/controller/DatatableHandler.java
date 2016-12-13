@@ -35,16 +35,21 @@ public class DatatableHandler {
 		      @RequestParam(required = false) Integer start,  
 		      @RequestParam(required = false) Integer length) {  
 	  
+		System.out.println("Coming in...");
 		if(start == null ) {
 			start = 0;
 		}
 		if(length == null) {
 			length = 5;
-		}
+		} 
 		 
+		int totalCount = deptService.queryDeptCount(keywords);  
+		if(length == -1) {
+			length = totalCount;
+		}
 	    Map<String, Object> map = new HashMap<>();  
+	    
 	    PageRequest pageable = new PageRequest((start / length), length);  
-	    int totalCount = deptService.queryDeptCount(keywords);  
 
 	    QueryVo vo = new QueryVo();
 	    vo.setKeywords(keywords);
